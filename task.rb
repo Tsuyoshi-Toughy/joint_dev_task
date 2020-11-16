@@ -7,7 +7,7 @@ def q1
   # 以下に回答を記載
   # names.push("斎藤")
   #pushは<<で代用
-  names.push("斎藤")
+  names.<<("斎藤")
   p names
 
 end
@@ -84,7 +84,7 @@ def q9
   names = ["田中", "佐藤", "佐々木", "高橋"]
 
   # 以下に回答を記載
-  names.each_with_index do |names, index|
+  names.each_with_index(1) do |names, index|
     puts "会員No.#{index}#{names}さん"
   end
 end
