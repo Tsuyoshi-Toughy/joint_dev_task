@@ -84,8 +84,8 @@ def q9
   names = ["田中", "佐藤", "佐々木", "高橋"]
 
   # 以下に回答を記載
-  names.each.with_index(1) do |names, index|
-    puts "会員No.#{index}#{names}さん"
+  names.each.with_index(1) do |names, i|
+    puts "会員No.#{i}#{names}さん"
   end
 end
 
@@ -108,8 +108,8 @@ def q11
   # 以下に回答を記載
   sports.flatten!
   puts "ユーザーの趣味一覧"
-  sports.uniq.each.with_index(1) do |sport,index|
-    puts "No#{index} #{sport}"
+  sports.uniq.each.with_index(1) do |sport,i|
+    puts "No#{i} #{sport}"
   end
 
 end
@@ -127,7 +127,8 @@ def q13
   update_data = { age: 32, address: "沖縄" }
 
   # 以下に回答を記載
-  p user_data.merge(update_data)
+  user_data.merge!(update_data)
+  p user_data
 
 end
 
@@ -166,9 +167,7 @@ end
 
 class UserQ17
   # 以下に回答を記載
-
 end
-
 def q17
   # ここは変更しないで下さい（ユーザー情報は変更していただいてOKです）
   user1 = UserQ17.new(name: "神里", age: 32, gender: "男")
