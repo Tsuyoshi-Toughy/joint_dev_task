@@ -127,6 +127,7 @@ def q13
   update_data = { age: 32, address: "沖縄" }
 
   # 以下に回答を記載
+  # merge!メソッド　結合させる
   user_data.merge!(update_data)
   p user_data
 
@@ -160,14 +161,32 @@ def q16
 
   # 以下に回答を記載
   users.each do |user|
-  p "私の名前は#{user[:name]}です。年齢は#{user[:age]}歳です。"
-  end
 
+  p "私の名前は#{user[:name]}です。年齢は#{user[:age]}歳です。"
+
+  end
 end
 
 class UserQ17
   # 以下に回答を記載
+
+def initialize(user)
+
+  @user = user
+
 end
+
+def info
+
+  puts <<~TEXT
+  名前: #{@user[:name]}
+  年齢: #{@user[:age]}
+  性別: #{@user[:gender]}
+  TEXT
+
+end
+end
+
 def q17
   # ここは変更しないで下さい（ユーザー情報は変更していただいてOKです）
   user1 = UserQ17.new(name: "神里", age: 32, gender: "男")
@@ -180,6 +199,20 @@ end
 
 class UserQ18
   # 以下に回答を記載
+
+  def initialize(name:, age:)
+    @name = name
+    @age = age
+  end
+
+  def introduce
+    if @age > 20
+      "こんにちは,#{@name}と申します。宜しくお願いいたします。"
+
+    else
+      "はいさいまいど〜,#{@name}です！！！"
+    end
+  end
 
 end
 
@@ -194,8 +227,8 @@ end
 
 class Item
   # 以下を修正して下さい
-
-  def initialize(name)
+  attr_reader :name
+  def initialize(name:)
     @name = name
   end
 end
@@ -208,15 +241,35 @@ end
 
 class UserQ20
   # 以下に回答を記載
-
+  attr_reader :name, :age
+  def initialize(**params)
+  @name = params[:name]
+  @age = params[:age]
+end
 end
 
 class Zoo
   # 以下に回答を記載
+  def initialize(**params)
+    @name = params[:name]
+    @entry_fee = params[:entry_fee]
+  end
 
+def info_entry_fee(user)
+    entry_fee = case user.age
+  when 0..5
+    @entry_fee[:infant]
+  when 6..12
+    @entry_fee[:children]
+  when 13..64
+    @entry_fee[:adult]
+  when 65..120
+    @entry_fee[:senior]
+  end
+
+ p "#{user.name}さんの入場料金は#{entry_fee}円です。"
 end
-
-
+end
 def q20
   # ここは変更しないで下さい（動物園・ユーザー情報は変更していただいてOKです）
   zoo = Zoo.new(name: "旭山動物園", entry_fee: { infant: 0, children: 400, adult: 800, senior: 500 })
